@@ -1,0 +1,161 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Brand tokens — El Nasr / أرض ورّاقة (paper & harvest identity)
+   القيم زي ما هي متفق عليها، معرّفة هنا مرة واحدة فقط.
+   ────────────────────────────────────────────────────────────────────────── */
+:root {
+  /* الألوان الأساسية */
+  --paper: #f7f4eb;
+  --ink: #173129;
+  --olive: #173f31;
+  --mint: #278a5b;
+  --mint-pale: #d9efdd;
+  --card: #fffdf7;
+  --secondary: #e7e8d9;
+  --muted: #efecdf;
+  --muted-foreground: #647269;
+  --line: #d9d8c8;
+  --wheat: #d8b663;
+  --wheat-pale: #f6edcd;
+  --clay: #b85d42;
+
+  /* aliases دلالية — بتستخدم في المكونات بدل الأسماء الخام */
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --primary: var(--olive);
+  --ring: var(--mint);
+  --accent: var(--mint-pale);
+  --border: var(--line);
+
+  /* الخطوط — الترتيب بيسمح للمتصفح يختار الحرف المناسب تلقائيًا
+     لو النص عربي هيسحب من Noto Kufi Arabic حتى لو الصفحة LTR */
+  --font-display: "Fraunces", "Noto Kufi Arabic", serif;
+  --font-body: "Inter", "Noto Kufi Arabic", sans-serif;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Base
+   ────────────────────────────────────────────────────────────────────────── */
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+/* Focus states — واضحة ومتسقة مع الهوية (مينتي)، مش المتصفح الافتراضي */
+:focus-visible {
+  outline: 2px solid var(--mint);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Selection */
+::selection {
+  background-color: var(--mint-pale);
+  color: var(--ink);
+}
+
+/* Scrollbar — لمسة هادئة تتماشى مع الهوية بدل الافتراضي الرمادي */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--muted);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-foreground);
+}
+
+/* احترام تفضيل تقليل الحركة */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Status badges — مبنية على حالات المنتج وطلبات الأسعار في الباك اند
+   (draft / in_review / published) و(new / in_progress / closed)
+   ────────────────────────────────────────────────────────────────────────── */
+.badge-draft {
+  background-color: var(--muted);
+  color: var(--muted-foreground);
+}
+.badge-in-review {
+  background-color: var(--wheat-pale);
+  color: #7a5a20;
+}
+.badge-published {
+  background-color: var(--mint-pale);
+  color: var(--olive);
+}
+.badge-attention {
+  background-color: #f6e3dc;
+  color: var(--clay);
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Modal entrance animations — مستخدمة في أي popup في الموقع (زي
+   QuoteRequestDetailsModal في لوحة التحكم)
+   ────────────────────────────────────────────────────────────────────────── */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out;
+}
+
+.animate-modal-in {
+  animation: modal-in 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}

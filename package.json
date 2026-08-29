@@ -1,0 +1,38 @@
+{
+  "name": "elnasr-frontend",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "generate:sitemap": "node scripts/generate-sitemap.js"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.51.0",
+    "axios": "^1.7.2",
+    "formik": "^2.4.6",
+    "framer-motion": "^11.3.0",
+    "gsap": "^3.15.0",
+    "i18next": "^23.12.0",
+    "i18next-browser-languagedetector": "^7.2.1",
+    "lucide-react": "^0.408.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-dropzone": "^14.2.3",
+    "react-hot-toast": "^2.4.1",
+    "react-i18next": "^14.1.2",
+    "react-icons": "^5.7.0",
+    "react-router-dom": "^6.26.0",
+    "yup": "^1.4.0",
+    "zustand": "^4.5.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.39",
+    "tailwindcss": "^3.4.6",
+    "vite": "^5.3.4"
+  }
+}

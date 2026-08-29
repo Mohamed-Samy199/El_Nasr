@@ -1,0 +1,105 @@
+{
+  "hero": {
+    "badge": "تصدير زراعي مصري",
+    "exportBadge": "تصدير أشمون",
+    "cropSpec": "مواصفات المحصول",
+    "purity": "نسبة النقاوة",
+    "origin": "منطقة المنشأ",
+    "status": "حالة المحصول",
+    "exploreProducts": "تصفح المنتجات",
+    "requestQuote": "اطلب عرض سعر"
+  },
+  "nav": {
+    "home": "الرئيسية",
+    "products": "المنتجات",
+    "about": "عن الشركة",
+    "contact": "تواصل معنا",
+    "requestQuote": "اطلب عرض سعر"
+  },
+  "footer": {
+    "socialMedia": "وسائل التواصل الاجتماعي",
+    "desc": "شركة النصر لتعبئة المحاصيل الزراعية — من أرض مصر إلى العالم.",
+    "end": "شركة النصر لتعبئة المحاصيل الزراعية"
+  },
+  "common": {
+    "loading": "جارٍ التحميل...",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "add": "إضافة",
+    "search": "بحث",
+    "filter": "تصفية",
+    "all": "الكل",
+    "back": "رجوع",
+    "submit": "إرسال",
+    "close": "إغلاق",
+    "confirm": "تأكيد",
+    "noResults": "لا توجد نتائج"
+  },
+  "product": {
+    "origin": "المنشأ",
+    "season": "الموسم",
+    "grade": "الدرجة",
+    "packaging": "التعبئة",
+    "minOrderQty": "الحد الأدنى للطلب",
+    "category": "التصنيف",
+    "description": "الوصف",
+    "requestQuote": "اطلب عرض سعر لهذا المنتج",
+    "Status": "الحالة",
+    "Name": "الاسم",
+    "Description": "الوصف",
+    "Date": "التاريخ"
+  },
+  "productStatus": {
+    "draft": "مسودة",
+    "in_review": "قيد المراجعة",
+    "published": "منشور"
+  },
+  "quoteRequest": {
+    "title": "طلب عرض سعر",
+    "fullName": "الاسم بالكامل",
+    "companyName": "اسم الشركة",
+    "email": "البريد الإلكتروني",
+    "phone": "رقم الهاتف",
+    "country": "الدولة",
+    "product": "المنتج",
+    "quantity": "الكمية",
+    "packagingPreference": "نوع التعبئة المفضل",
+    "message": "رسالة",
+    "submittedAt": "تاريخ الإرسال",
+    "submit": "إرسال الطلب",
+    "success": "تم إرسال طلبك بنجاح، سيتواصل معك فريقنا قريبًا.",
+    "internalNote": "ملاحظة داخلية"
+  },
+  "quoteStatus": {
+    "new": "جديد",
+    "in_progress": "قيد المتابعة",
+    "closed": "مغلق"
+  },
+  "auth": {
+    "login": "تسجيل الدخول",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "loginButton": "دخول",
+    "loginError": "البريد الإلكتروني أو كلمة المرور غير صحيحة"
+  },
+  "dashboard": {
+    "title": "لوحة التحكم",
+    "overview": "نظرة عامة",
+    "products": "المنتجات",
+    "categories": "التصنيفات",
+    "quoteRequests": "طلبات عروض الأسعار",
+    "logout": "تسجيل الخروج",
+    "totalProducts": "إجمالي المنتجات",
+    "publishedProducts": "منشورة",
+    "draftProducts": "مسودات",
+    "newQuoteRequests": "طلبات جديدة",
+    "addProduct": "إضافة منتج",
+    "addCategory": "إضافة تصنيف"
+  },
+  "language": {
+    "en": "English",
+    "ar": "العربية"
+  }
+}

@@ -1,0 +1,48 @@
+/* ──────────────────────────────────────────────────────────────────────────
+   RTL overrides
+   ملاحظة مهمة: فضّل استخدام Tailwind logical utilities في الكومبوننتس بدل
+   ما تعتمد على الملف ده — دول بيتقلبوا تلقائيًا مع [dir] من غير أي CSS إضافي:
+     ml-4  → ms-4   (margin-inline-start)
+     mr-4  → me-4   (margin-inline-end)
+     pl-4  → ps-4   (padding-inline-start)
+     pr-4  → pe-4   (padding-inline-end)
+     text-left  → text-start
+     text-right → text-end
+     left-0 / right-0 → start-0 / end-0
+
+   الملف ده بيغطي بس الحالات اللي مينفعش تتحل بالـ logical utilities
+   (أيقونات محتاجة تتقلب فعليًا، مش بس تتحرك مكانها).
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* أيقونات الاتجاه (سهم "التالي"، "رجوع"، شيفرون الأكورديون...)
+   لازم تتقلب بصريًا في RTL، مش بس تتحرك مكانها */
+[dir="rtl"] .icon-directional {
+  transform: scaleX(-1);
+}
+
+/* الخط العربي بيحتاج line-height أكبر شوية عن اللاتيني عشان التشكيل والحروف الممدودة
+   تتحط بشكل مريح، خصوصًا في العناوين بخط Fraunces/Kufi */
+[dir="rtl"] h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] h4 {
+  line-height: 1.5;
+}
+
+[dir="rtl"] body {
+  line-height: 1.75;
+}
+
+/* الأرقام (زي أسعار أو كميات) بتفضل تتعرض بشكل لاتيني حتى جوه سياق عربي
+   عشان تفضل مقروءة وموحدة في الفواتير والجداول */
+.numeric {
+  direction: ltr;
+  unicode-bidi: isolate;
+  display: inline-block;
+}
+
+/* Toast notifications (react-hot-toast) بتتولد بـ JS ومش بتاخد اتجاه الصفحة تلقائيًا */
+[dir="rtl"] .go2072408551 {
+  direction: rtl;
+  font-family: var(--font-body);
+}

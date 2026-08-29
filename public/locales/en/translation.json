@@ -1,0 +1,105 @@
+{
+  "hero": {
+    "badge": "Egyptian Agricultural Export",
+    "exportBadge": "Ashmoun Export",
+    "cropSpec": "Crop Spec",
+    "purity": "Purity Level",
+    "origin": "Origin Region",
+    "status": "Crop Status",
+    "exploreProducts": "Explore Products",
+    "requestQuote": "Request Quote"
+  },
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "about": "About",
+    "contact": "Contact",
+    "requestQuote": "Request a Quote"
+  },
+  "footer": {
+    "socialMedia": "Social Media",
+    "desc": "Al Nasr Company for Agricultural Crops Packaging — from the land of Egypt to the world.",
+    "end": "Al Nasr Company for Agricultural Crops Packaging"
+  },
+  "common": {
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "add": "Add",
+    "search": "Search",
+    "filter": "Filter",
+    "all": "All",
+    "back": "Back",
+    "submit": "Submit",
+    "close": "Close",
+    "confirm": "Confirm",
+    "noResults": "No results found"
+  },
+  "product": {
+    "origin": "Origin",
+    "season": "Season",
+    "grade": "Grade",
+    "packaging": "Packaging",
+    "minOrderQty": "Minimum order quantity",
+    "category": "Category",
+    "description": "Description",
+    "requestQuote": "Request a quote for this product",
+    "Status": "Status",
+    "Name": "Name",
+    "Description": "Description",
+    "Date": "Date"
+  },
+  "productStatus": {
+    "draft": "Draft",
+    "in_review": "In review",
+    "published": "Published"
+  },
+  "quoteRequest": {
+    "title": "Request a quote",
+    "fullName": "Full name",
+    "companyName": "Company name",
+    "email": "Email",
+    "phone": "Phone",
+    "country": "Country",
+    "product": "Product",
+    "quantity": "Quantity",
+    "packagingPreference": "Packaging preference",
+    "message": "Message",
+    "submittedAt": "Submitted",
+    "submit": "Submit request",
+    "success": "Your request has been submitted. Our team will contact you shortly.",
+    "internalNote": "Internal note"
+  },
+  "quoteStatus": {
+    "new": "New",
+    "in_progress": "In progress",
+    "closed": "Closed"
+  },
+  "auth": {
+    "login": "Log in",
+    "email": "Email",
+    "password": "Password",
+    "loginButton": "Log in",
+    "loginError": "Invalid email or password"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "overview": "Overview",
+    "products": "Products",
+    "categories": "Categories",
+    "quoteRequests": "Quote requests",
+    "logout": "Log out",
+    "totalProducts": "Total products",
+    "publishedProducts": "Published",
+    "draftProducts": "Drafts",
+    "newQuoteRequests": "New requests",
+    "addProduct": "Add product",
+    "addCategory": "Add category"
+  },
+  "language": {
+    "en": "English",
+    "ar": "العربية"
+  }
+}
