@@ -1,13 +1,3 @@
-// import { apiGet, apiPost, apiPut, apiDelete } from "../../../lib/apiRepository.js";
-
-// export const categoriesAdminApi = {
-//   getAll: () => apiGet("/categories"),
-//   create: (data) => apiPost("/categories", data),
-//   update: (id, data) => apiPut(`/categories/${id}`, data),
-//   remove: (id) => apiDelete(`/categories/${id}`),
-// };
-
-
 import { apiGet, apiPost, apiPut, apiDelete, apiUpload } from "../../../lib/apiRepository.js";
 
 export const categoriesAdminApi = {

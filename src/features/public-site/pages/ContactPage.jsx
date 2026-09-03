@@ -7,6 +7,7 @@ import { productsApi } from "../api/productsApi.js";
 import { useLanguageStore } from "../../../store/language.store.js";
 import ScrollToTop from "../../../components/shared/ScrollToTop.jsx";
 import ContactFormSection from "../../../components/contact/ContactFormSection.jsx";
+import LocationSection from "../../../components/contact/LocationSection.jsx";
 
 const ContactPage = () => {
   const currentLang = useLanguageStore((state) => state.currentLang);
@@ -29,7 +30,8 @@ const ContactPage = () => {
       <PublicHeader />
 
       <ContactFormSection isAr={isAr} products={products} />
-
+      <LocationSection isAr={isAr} />
+      
       <PublicFooter />
       <ScrollToTop />
     </div>

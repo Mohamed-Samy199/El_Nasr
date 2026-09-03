@@ -13,8 +13,6 @@ const NAV_LINKS = [
   { to: "/contact", key: "nav.contact" },
 ];
 
-
-
 const PublicHeader = () => {
   const { t } = useTranslation();
   const currentLang = useLanguageStore((state) => state.currentLang);
@@ -24,9 +22,6 @@ const PublicHeader = () => {
     isActive ? "text-olive" : "hover:text-olive transition-colors";
 
   return (
-    // z-[60] لازم يفضل أعلى من أي z-index جوه الـ Hero (اللي بيوصل z-50)،
-    // وإلا محتوى الـ Hero بيرسم فوق الهيدر أثناء السكرول بما إنه جاي بعده
-    // في ترتيب الـ HTML وبنفس الرقم — ده كان سبب المشكلة في الصورة اللي بعتها
     <header className="sticky top-0 z-[60] bg-paper border-b border-line">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
         <NavLink to="/" className="flex items-center shrink-0">

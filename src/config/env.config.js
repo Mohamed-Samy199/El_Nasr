@@ -1,6 +1,3 @@
-// كل متغيرات البيئة بتتقرأ من import.meta.env في Vite، ولازم تبدأ بـ VITE_
-// عشان Vite يوافق يحطها جوه الكود اللي بيتبعت للمتصفح.
-
 const required = ["VITE_API_URL"];
 
 required.forEach((key) => {

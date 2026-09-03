@@ -1,10 +1,6 @@
 import { Target, Eye } from "lucide-react";
 import { ACCENT_THEMES } from "../../utils/leafBurst.js";
 
-/**
- * نفس النص المعتمد رسميًا من بروشور الشركة (Mission & Vision) —
- * التغيير كله شكلي فقط.
- */
 const MissionVisionSection = ({ isAr }) => {
   const missionVision = [
     {

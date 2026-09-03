@@ -14,10 +14,7 @@ import { LOGO_SRC_LIGHT } from "../../config/logo";
 import { NavLink } from "react-router-dom";
 import { useLanguageStore } from "../../store/language.store";
 
-/**
- * بيانات معتمدة رسميًا من بروشور الشركة (Al Nasr Company for Agricultural
- * Crops Packaging).
- */
+
 const PublicFooter = () => {
   const { t } = useTranslation();
   const currentLang = useLanguageStore((state) => state.currentLang);
@@ -48,30 +45,67 @@ const PublicFooter = () => {
           </h3>
 
           <ul className="text-sm text-paper/70 space-y-2">
-            <li className="flex items-center gap-2">
-              <Phone size={14} className="shrink-0" />
-              <span className="numeric">+20 102 324 4206</span>
+
+            {/* Phone 1 */}
+            <li>
+              <a
+                href="tel:01140156010"
+                className="flex items-center gap-2 hover:text-paper transition-colors"
+              >
+                <Phone size={14} className="shrink-0" />
+                <span className="numeric">01140156010</span>
+              </a>
             </li>
 
-            <li className="flex items-center gap-2">
-              <Phone size={14} className="shrink-0" />
-              <span className="numeric">+20 127 095 2548</span>
+            {/* Phone 2 */}
+            <li>
+              <a
+                href="tel:01270952548"
+                className="flex items-center gap-2 hover:text-paper transition-colors"
+              >
+                <Phone size={14} className="shrink-0" />
+                <span className="numeric">01270952548</span>
+              </a>
             </li>
 
-            <li className="flex items-center gap-2">
-              <Mail size={14} className="shrink-0" />
-              alnasrcompany25@gmail.com
+            {/* Location */}
+            <li>
+              <a
+                href="https://maps.app.goo.gl/ENwc7c96cmJBJFgk9"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 hover:text-paper transition-colors"
+              >
+                <MapPin size={14} className="shrink-0" />
+                <span>{t("footer.location")}</span>
+              </a>
             </li>
 
-            <li className="flex items-center gap-2">
-              <MapPin size={14} className="shrink-0" />
-              Asmoun, El Menoufia, Egypt
+            {/* Email */}
+            <li>
+              <a
+                href="mailto:elnasrcompanyagricultural@gmail.com"
+                className="flex items-center gap-2 hover:text-paper transition-colors"
+              >
+                <Mail size={14} className="shrink-0" />
+                <span>elnasrcompanyagricultural@gmail.com</span>
+              </a>
             </li>
 
-            <li className="flex items-center gap-2">
-              <Globe size={14} className="shrink-0" />
-              www.alnasr.com
+
+            {/* Website */}
+            <li>
+              <a
+                href="https://www.alnasr.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 hover:text-paper transition-colors"
+              >
+                <Globe size={14} className="shrink-0" />
+                <span>www.alnasr.com</span>
+              </a>
             </li>
+
           </ul>
         </div>
 
@@ -82,9 +116,32 @@ const PublicFooter = () => {
           </h3>
 
           <ul className="text-sm text-paper/70 space-y-2">
-            <li>{t("nav.products")}</li>
-            <li>{t("nav.about")}</li>
-            <li>{t("nav.requestQuote")}</li>
+            <li>
+              <NavLink
+                to="/products"
+                className="hover:text-paper transition-colors"
+              >
+                {t("nav.products")}
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+                to="/about"
+                className="hover:text-paper transition-colors"
+              >
+                {t("nav.about")}
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+                to="/contact"
+                className="hover:text-paper transition-colors"
+              >
+                {t("nav.requestQuote")}
+              </NavLink>
+            </li>
           </ul>
         </div>
 
@@ -118,12 +175,23 @@ const PublicFooter = () => {
               <FaInstagram size={18} />
             </a>
 
-            {/* WhatsApp */}
+            {/* WhatsApp - Phone 1 */}
             <a
-              href="https://wa.me/201023244206"
+              href="https://wa.me/201140156010"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="WhatsApp"
+              aria-label="WhatsApp 01140156010"
+              className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-paper/70 hover:bg-mint-pale hover:text-olive hover:border-mint-pale transition-all duration-300"
+            >
+              <FaWhatsapp size={19} />
+            </a>
+
+            {/* WhatsApp - Phone 2 */}
+            <a
+              href="https://wa.me/201270952548"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp 01270952548"
               className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-paper/70 hover:bg-mint-pale hover:text-olive hover:border-mint-pale transition-all duration-300"
             >
               <FaWhatsapp size={19} />

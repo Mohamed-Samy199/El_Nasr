@@ -1,47 +1,27 @@
 import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import {
-  LayoutDashboard,
-  Package,
-  Tags,
-  MessageSquareText,
-  X,
-} from "lucide-react";
-import { useLanguageStore } from "../../store/language.store.js";
-import { LOGO_SRC_LIGHT } from "../../config/logo.js";
+import { useQuery } from "@tanstack/react-query";
+import { LayoutDashboard, Package, Tags, MessageSquareText, X } from "lucide-react";
+import { dashboardApi } from "../../features/dashboard-overview/api/dashboardApi.js";
 
 const NAV_ITEMS = [
-  {
-    to: "/dashboard",
-    icon: LayoutDashboard,
-    labelKey: "dashboard.overview",
-    end: true,
-  },
-  {
-    to: "/dashboard/products",
-    icon: Package,
-    labelKey: "dashboard.products",
-  },
-  {
-    to: "/dashboard/categories",
-    icon: Tags,
-    labelKey: "dashboard.categories",
-  },
-  {
-    to: "/dashboard/quote-requests",
-    icon: MessageSquareText,
-    labelKey: "dashboard.quoteRequests",
-  },
+  { to: "/dashboard", icon: LayoutDashboard, labelKey: "dashboard.overview", end: true },
+  { to: "/dashboard/products", icon: Package, labelKey: "dashboard.products" },
+  { to: "/dashboard/categories", icon: Tags, labelKey: "dashboard.categories" },
+  { to: "/dashboard/quote-requests", icon: MessageSquareText, labelKey: "dashboard.quoteRequests", showBadge: true },
 ];
 
-/**
- * Sidebar بلون --olive زي ما حددنا في نظام الألوان (Sidebar الداشبورد).
- * على الديسكتوب: ثابت جوه العمود. على الموبايل: بيتحط جوه overlay من
- * DashboardLayout ويتفتح/يتقفل بزرار الهامبرجر في DashboardTopbar.
- */
+const NOTIFICATIONS_POLL_INTERVAL = 30000;
+
 const DashboardSidebar = ({ onNavigate, onClose, isMobile = false }) => {
   const { t } = useTranslation();
-  const currentLang = useLanguageStore((state) => state.currentLang);
+
+  const { data } = useQuery({
+    queryKey: ["dashboard-stats"],
+    queryFn: dashboardApi.getStats,
+    refetchInterval: NOTIFICATIONS_POLL_INTERVAL,
+  });
+  const newRequestsCount = data?.data?.stats?.quoteRequests?.new || 0;
 
   return (
     <aside
@@ -51,47 +31,41 @@ const DashboardSidebar = ({ onNavigate, onClose, isMobile = false }) => {
     >
       <div className="flex items-center justify-between mb-8 px-2">
         <div>
-          <NavLink to="/" onClick={onNavigate} className="block">
-            <img
-              src={LOGO_SRC_LIGHT[currentLang]}
-              alt="Al Nasr - النصر"
-              className="h-14 sm:h-16 w-auto max-w-[180px] object-contain"
-            />
-          </NavLink>
-
-          <p className="text-xs md:text-xl text-mint-pale/70 mt-2">
-            {t("dashboard.title")}
-          </p>
+          <span className="font-display text-lg font-semibold">Al Nasr</span>
+          <p className="text-xs text-mint-pale/70 mt-0.5">{t("dashboard.title")}</p>
         </div>
-
         {isMobile && (
-          <button
-            onClick={onClose}
-            className="text-paper/80 hover:text-paper"
-            aria-label="Close menu"
-          >
+          <button onClick={onClose} className="text-paper/80 hover:text-paper" aria-label="Close menu">
             <X size={20} />
           </button>
         )}
       </div>
 
       <nav className="flex flex-col gap-1">
-        {NAV_ITEMS.map(({ to, icon: Icon, labelKey, end }) => (
+        {NAV_ITEMS.map(({ to, icon: Icon, labelKey, end, showBadge }) => (
           <NavLink
             key={to}
             to={to}
             end={end}
             onClick={onNavigate}
             className={({ isActive }) =>
-              `flex items-center gap-3 rounded-card px-3 py-2.5 text-sm font-medium transition-colors ${
+              `flex items-center justify-between gap-3 rounded-card px-3 py-2.5 text-sm font-medium transition-colors ${
                 isActive
                   ? "bg-mint-pale text-olive"
                   : "text-paper/80 hover:bg-white/5 hover:text-paper"
               }`
             }
           >
-            <Icon size={18} strokeWidth={2} />
-            {t(labelKey)}
+            <span className="flex items-center gap-3">
+              <Icon size={18} strokeWidth={2} />
+              {t(labelKey)}
+            </span>
+
+            {showBadge && newRequestsCount > 0 && (
+              <span className="min-w-[20px] h-5 px-1.5 rounded-full bg-clay text-paper text-xs font-bold flex items-center justify-center shrink-0">
+                {newRequestsCount > 99 ? "99+" : newRequestsCount}
+              </span>
+            )}
           </NavLink>
         ))}
       </nav>

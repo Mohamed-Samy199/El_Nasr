@@ -3,20 +3,10 @@ import { useTranslation } from "react-i18next";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { X } from "lucide-react";
 import toast from "react-hot-toast";
-// import { quoteRequestsAdminApi } from "../api/quoteRequestsAdminApi.js";
-// import { formatDate } from "../../../utils/formatDate.js";
 import { quoteRequestsAdminApi } from "../../features/dashboard-quote-requests/api/quoteRequestsAdminApi.js";
 import { formatDate } from "../../utils/formatDate.js";
 
-
 const STATUS_OPTIONS = ["new", "in_progress", "closed"];
-
-/**
- * Popup في نص الشاشة (بدل الـ Drawer الجانبي القديم) — بيظهر لما تدوس على
- * صف في جدول طلبات عروض الأسعار. نفس الوظيفة بالظبط (عرض التفاصيل، تحديث
- * الحالة، كتابة ملاحظة داخلية)، بس بحواف rounded-[2rem] وanimation دخول
- * خفيف (scale + fade) بدل السلايد من الجنب.
- */
 const QuoteRequestDetailsModal = ({ request, onClose }) => {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
@@ -42,6 +32,9 @@ const QuoteRequestDetailsModal = ({ request, onClose }) => {
     onSuccess: () => {
       toast.success("Quote request updated");
       queryClient.invalidateQueries({ queryKey: ["admin-quote-requests"] });
+      // بتحدّث الـ badge في الـ Sidebar فورًا من غير ما تستنى الـ polling
+      // التلقائي (30 ثانية) — عشان العداد يقل فورًا لما الأدمن يرد على طلب
+      queryClient.invalidateQueries({ queryKey: ["dashboard-stats"] });
       onClose();
     },
     onError: (error) => toast.error(error.message),
@@ -80,7 +73,7 @@ const QuoteRequestDetailsModal = ({ request, onClose }) => {
             <DetailRow label={t("quoteRequest.email")} value={request.email} />
             <DetailRow label={t("quoteRequest.phone")} value={request.phone} numeric />
             <DetailRow label={t("quoteRequest.country")} value={request.country} />
-            <DetailRow label={t("quoteRequest.product")} value={request.product?.name_ar || "—"} />
+            <DetailRow label={t("quoteRequest.product")} value={request.product?.name_en || "—"} />
             <DetailRow label={t("quoteRequest.quantity")} value={request.quantity} />
             <DetailRow
               label={t("quoteRequest.packagingPreference")}
@@ -100,7 +93,7 @@ const QuoteRequestDetailsModal = ({ request, onClose }) => {
 
           <div className="pt-2 border-t border-line space-y-4">
             <div>
-              <label className="block text-sm font-medium text-ink mb-1.5">{t("product.Status")}</label>
+              <label className="block text-sm font-medium text-ink mb-1.5">Status</label>
               <select
                 value={status}
                 onChange={(e) => setStatus(e.target.value)}
@@ -115,7 +108,7 @@ const QuoteRequestDetailsModal = ({ request, onClose }) => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-ink mb-1.5">{t("quoteRequest.internalNote")}</label>
+              <label className="block text-sm font-medium text-ink mb-1.5">Internal note</label>
               <textarea
                 rows={3}
                 value={note}

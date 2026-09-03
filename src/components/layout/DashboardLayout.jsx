@@ -3,11 +3,6 @@ import { Outlet } from "react-router-dom";
 import DashboardSidebar from "./DashboardSidebar.jsx";
 import DashboardTopbar from "./DashboardTopbar.jsx";
 
-/**
- * Layout route لكل صفحات لوحة التحكم — بيتحط جوه ProtectedRoute في الراوتر
- * عشان أي صفحة داخله تبقى محمية تلقائيًا وبنفس الـ Sidebar/Topbar.
- * على الموبايل، الـ Sidebar بيتحول لـ drawer بيتفتح من زرار الهامبرجر.
- */
 const DashboardLayout = () => {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 

@@ -18,17 +18,12 @@ const HomePage = () => {
       <PublicHeader />
 
       <HeroSlider />
-
       <JourneySection />
-
       <CategorySection />
-
       <ProductsSection limit={6} showViewAll />
-
       <ProductsShowcase />
 
       <PublicFooter />
-
       <ScrollToTop/>
     </div>
   );

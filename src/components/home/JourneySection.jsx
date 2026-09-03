@@ -16,8 +16,6 @@ export default function JourneySection() {
 
   return (
     <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
-      {/* المسار من الحقل للتصدير — امتداد لفلسفة "ملف الحصاد" اللي بنينا
-          عليها الموقع، دلوقتي كقسم مستقل تحت الـ Hero بدل ما يكون جواه */}
       <h2 className="font-display text-2xl font-semibold text-ink mb-8 text-center">
         {currentLang === "ar" ? "المسار من الحقل للتصدير" : "The field-to-export journey"}
       </h2>

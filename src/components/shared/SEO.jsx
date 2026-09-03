@@ -1,12 +1,5 @@
 import { useEffect } from "react";
 
-/**
- * بيظبط title وmeta description للصفحة الحالية، وياختيار بيضيف JSON-LD
- * structured data خاص بالصفحة (زي بيانات المنتج في صفحة تفاصيله) — بيتشال
- * تلقائيًا عند مغادرة الصفحة عشان مايتراكمش مع صفحات تانية.
- *
- * الاستخدام: <SEO title="..." description="..." structuredData={{...}} />
- */
 const SEO = ({ title, description, structuredData }) => {
   useEffect(() => {
     const fullTitle = title ? `${title} | Al Nasr` : "Al Nasr | Agricultural Crops";

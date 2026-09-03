@@ -3,10 +3,7 @@ import { useTranslation } from "react-i18next";
 import { ACCENT_THEMES, spawnLeafBurst } from "../../utils/leafBurst.js";
 import { LOGO_SRC } from "../../config/logo.js";
 
-/**
- * هيدر صفحة "من نحن" — نص تعريفي + دائرة العلامة التجارية
- * مع تأثير ورق الشجر عند hover/touch (خاص بالصفحة دي بس).
- */
+
 const AboutHeroSection = ({ isAr, currentLang }) => {
   const { t } = useTranslation();
 

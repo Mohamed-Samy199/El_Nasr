@@ -1,0 +1,39 @@
+/* تخصيص شكل الـ Swiper بألوان هوية الموقع بدل الافتراضي */
+
+.facility-swiper .swiper-slide {
+  height: auto;
+  display: flex;
+  transition: all 0.3s ease;
+}
+
+/* الكارت في النص يبقى أكبر وأوضح شوية عن الجانبين */
+.facility-swiper .swiper-slide-active {
+  z-index: 2;
+}
+
+.facility-swiper .swiper-slide-prev,
+.facility-swiper .swiper-slide-next {
+  opacity: 0.55;
+}
+
+/* نقاط التنقل (pagination bullets) */
+.facility-bullet {
+  width: 8px;
+  height: 8px;
+  background: var(--line);
+  border-radius: 999px;
+  display: inline-block;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.facility-bullet:hover {
+  background: var(--mint);
+  transform: scale(1.2);
+}
+
+.facility-bullet.swiper-pagination-bullet-active {
+  width: 28px;
+  border-radius: 999px;
+  background: var(--wheat);
+}
