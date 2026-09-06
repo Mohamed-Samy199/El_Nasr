@@ -4,8 +4,8 @@ import { useTranslation } from "react-i18next";
 import { ArrowRight, ArrowLeft, Leaf, ArrowUpRight } from "lucide-react";
 import { gsap } from "gsap";
 import { useLanguageStore } from "../../store/language.store.js";
-import hero1 from '../../assests/hero/hero-1.png';
-import hero2 from '../../assests/hero/hero-2.png';
+import hero1 from '../../assests/hero/hero-1.webp';
+import hero2 from '../../assests/hero/hero-2.webp';
 
 /**
  * Hero slider للصفحة الرئيسية — محتوى ثنائي اللغة (نفس باترن _en/_ar بتاع
@@ -413,7 +413,8 @@ const HeroSlider = () => {
           <div className="flex flex-wrap items-center gap-4 sm:gap-5">
             <NavLink
               to="/products"
-              className="group flex items-center gap-3 bg-mint hover:bg-olive border border-mint text-paper px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-medium transition-all duration-300 shadow-xl shadow-[#278A5B]/20"
+              className="group flex items-center gap-3 bg-mint hover:bg-olive border border-mint text-paper 
+               px-2 md:px-6 py-3 md:py-3.5 rounded-xl font-medium transition-all duration-300 shadow-xl shadow-[#278A5B]/20"
             >
               <span>{t("hero.exploreProducts")}</span>
               {isRtl ? (
@@ -425,7 +426,11 @@ const HeroSlider = () => {
 
             <NavLink
               to="/contact"
-              className="flex items-center gap-2 bg-[#F7F4EB]/10 hover:bg-[#F7F4EB]/20 border border-[#F7F4EB]/20 text-paper px-6 sm:px-7 py-3.5 sm:py-4 rounded-xl font-medium backdrop-blur-md transition-all duration-300"
+              className="flex items-center gap-2 bg-[#F7F4EB]/10 hover:bg-[#F7F4EB]/20 
+              border border-[#F7F4EB]/20 text-paper 
+              px-2 md:px-6 py-3 md:py-3.5
+              rounded-xl font-medium 
+              backdrop-blur-md transition-all duration-300"
             >
               <span>{t("hero.requestQuote")}</span>
               <ArrowUpRight className={`w-4 h-4 text-wheat ${isRtl ? "icon-directional" : ""}`} />
