@@ -12,12 +12,12 @@ const ProductCreatePage = () => {
 
   const createMutation = useMutation({
     mutationFn: productsAdminApi.create,
-    onSuccess: (response) => {
+    onSuccess: () => {
       toast.success("Product created");
       queryClient.invalidateQueries({ queryKey: ["admin-products"] });
-      // بنحول مباشرة لصفحة التعديل عشان يقدر يرفع صور —
-      // الرفع محتاج productId موجود بالفعل زي ما اتفقنا في تصميم الـ upload flow
-      navigate(`/dashboard/products/${response.data.product._id}/edit`);
+      // الصور بقت بتتبعت مع باقي بيانات المنتج في نفس النداء، فمفيش داعي
+      // نحوّل لصفحة تعديل بس عشان يرفع صور — نرجعه للقائمة مباشرة
+      navigate("/dashboard/products");
     },
     onError: (error) => toast.error(error.message),
   });

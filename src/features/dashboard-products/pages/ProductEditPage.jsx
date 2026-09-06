@@ -4,7 +4,6 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { productsAdminApi } from "../api/productsAdminApi.js";
 import ProductForm from "../components/ProductForm.jsx";
-import ImageUploader from "../components/ImageUploader.jsx";
 
 const ProductEditPage = () => {
   const { t } = useTranslation();
@@ -37,16 +36,13 @@ const ProductEditPage = () => {
         {t("common.edit")} — {product.name_en}
       </h1>
 
+      {/* الصور بقت جزء من ProductForm نفسه — initialValues.images بيجيب
+          صور المنتج الموجودة، وأي رفع/حذف جديد بيتبعت مع باقي الحقول */}
       <ProductForm
         initialValues={{ ...product, category: product.category?._id || product.category }}
         onSubmit={updateMutation.mutate}
         isSubmitting={updateMutation.isPending}
       />
-
-      <div className="max-w-3xl mt-8 pt-8 border-t border-line">
-        <h2 className="text-sm font-semibold text-ink mb-3">Product images</h2>
-        <ImageUploader productId={id} existingImages={product.images || []} />
-      </div>
     </div>
   );
 };

@@ -16,6 +16,7 @@ export const productsAdminApi = {
     files.forEach((file) => formData.append("images", file));
     return apiUpload("/upload", formData);
   },
+  deleteUploadedImage: (publicId) => apiDelete(`/upload/${encodeURIComponent(publicId)}`),
   attachImages: (productId, images) => apiPatch(`/products/${productId}/images`, { images }),
   removeImage: (productId, publicId) =>
     apiDelete(`/products/${productId}/images/${encodeURIComponent(publicId)}`),

@@ -1,12 +1,14 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
+import { UploadCloud, X } from "lucide-react";
+import toast from "react-hot-toast";
 import { categoriesAdminApi } from "../../dashboard-categories/api/categoriesAdminApi.js";
+import { productsAdminApi } from "../api/productsAdminApi.js";
 import { useLanguageStore } from "../../../store/language.store.js";
 import { getLocalizedField } from "../../../utils/getLocalizedField.js";
 
-// نفس بنية createProductSchema بتاعة Joi في الباك اند، مترجمة لـ Yup
 const productSchema = Yup.object({
   name_en: Yup.string().min(2).max(100).required("English name is required"),
   name_ar: Yup.string().min(2).max(100).required("الاسم بالعربي مطلوب"),
@@ -35,8 +37,13 @@ const FIELD_ROWS = [
 ];
 
 /**
- * فورم موحّد للإضافة والتعديل — initialValues لو جاي منتج موجود (وضع تعديل)،
- * أو قيم فاضية (وضع إضافة). onSubmit بيتحدد من الصفحة اللي بتستخدم الكومبوننت.
+ * فورم موحّد للإضافة والتعديل — بما فيه رفع الصور بقى جزء من الفورم نفسه
+ * (زي CategoryForm بالظبط)، مش خطوة منفصلة بعد الحفظ.
+ *
+ * وقت الإضافة: الصور بترفع لـ Cloudinary فورًا (مفيش داعي لـ productId)،
+ * وبتتبعت مع باقي بيانات المنتج في نداء POST واحد.
+ * وقت التعديل: initialValues.images بيجيب صور المنتج الموجودة، وأي رفع/حذف
+ * جديد بيتحدّث في formik.values.images، ويتبعت كامل مع الـ PUT.
  */
 const ProductForm = ({ initialValues, onSubmit, isSubmitting }) => {
   const { t } = useTranslation();
@@ -65,12 +72,38 @@ const ProductForm = ({ initialValues, onSubmit, isSubmitting }) => {
       packaging_ar: "",
       minOrderQty: "",
       status: "draft",
+      images: [],
       ...initialValues,
     },
     validationSchema: productSchema,
     enableReinitialize: true,
     onSubmit,
   });
+
+  const uploadMutation = useMutation({
+    mutationFn: productsAdminApi.uploadImages,
+    onSuccess: ({ data }) => {
+      formik.setFieldValue("images", [...formik.values.images, ...data.images]);
+    },
+    onError: (error) => toast.error(error.message || "Upload failed"),
+  });
+
+  const removeMutation = useMutation({
+    mutationFn: productsAdminApi.deleteUploadedImage,
+    onSuccess: (_, publicId) => {
+      formik.setFieldValue(
+        "images",
+        formik.values.images.filter((img) => img.public_id !== publicId)
+      );
+    },
+    onError: (error) => toast.error(error.message || "Failed to remove image"),
+  });
+
+  const handleFileChange = (e) => {
+    const files = Array.from(e.target.files || []);
+    if (files.length) uploadMutation.mutate(files);
+    e.target.value = ""; // يسمح تختار نفس الملف تاني لو شلته وحبيت ترفعه تاني
+  };
 
   const fieldClass = (name) =>
     `w-full rounded-card border bg-card px-3.5 py-2.5 text-ink placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-mint transition-colors ${
@@ -79,6 +112,46 @@ const ProductForm = ({ initialValues, onSubmit, isSubmitting }) => {
 
   return (
     <form onSubmit={formik.handleSubmit} noValidate className="space-y-6 max-w-3xl">
+      {/* رفع الصور — أول حاجة في الفورم، متاحة وقت الإضافة والتعديل مع بعض */}
+      <div>
+        <label className="block text-sm font-medium text-ink mb-2">Product images</label>
+
+        <label className="flex flex-col items-center justify-center gap-2 border-2 border-dashed border-line rounded-card p-6 cursor-pointer hover:border-mint transition-colors text-muted-foreground">
+          <input
+            type="file"
+            accept="image/jpeg,image/png,image/webp"
+            multiple
+            className="hidden"
+            onChange={handleFileChange}
+          />
+          <UploadCloud size={24} />
+          <span className="text-sm">
+            {uploadMutation.isPending ? "Uploading..." : "Click or drag images here (max 5, 5MB each)"}
+          </span>
+        </label>
+
+        {formik.values.images.length > 0 && (
+          <div className="grid grid-cols-4 sm:grid-cols-5 gap-3 mt-4">
+            {formik.values.images.map((img) => (
+              <div
+                key={img.public_id}
+                className="group relative aspect-square rounded-card overflow-hidden border border-line"
+              >
+                <img src={img.url} alt="" className="w-full h-full object-cover" />
+                <button
+                  type="button"
+                  onClick={() => removeMutation.mutate(img.public_id)}
+                  disabled={removeMutation.isPending}
+                  className="absolute top-1 end-1 w-6 h-6 rounded-full bg-ink/70 text-paper flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity disabled:opacity-50"
+                >
+                  <X size={14} />
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
       {/* Category + Status */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
@@ -194,7 +267,7 @@ const ProductForm = ({ initialValues, onSubmit, isSubmitting }) => {
 
       <button
         type="submit"
-        disabled={isSubmitting}
+        disabled={isSubmitting || uploadMutation.isPending}
         className="rounded-full bg-olive text-paper text-sm font-medium px-6 py-2.5 hover:bg-[#0f2a20] disabled:opacity-60 transition-colors"
       >
         {isSubmitting ? t("common.loading") : t("common.save")}
