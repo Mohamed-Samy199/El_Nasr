@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from "react";
 import { useParams, NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -10,15 +9,13 @@ import PublicFooter from "../../../components/layout/PublicFooter.jsx";
 import SEO from "../../../components/shared/SEO.jsx";
 import { productsApi } from "../api/productsApi.js";
 import QuoteRequestForm from "../components/QuoteRequestForm.jsx";
+import StationActivities from "../components/StationActivities.jsx"; // ← جديد
 import { useLanguageStore } from "../../../store/language.store.js";
 import { getLocalizedField } from "../../../utils/getLocalizedField.js";
 import { ProductDetailsSkeleton } from "../../../components/ui/Skeleton.jsx";
 import ProductsSection from "../../../components/home/ProductsSection.jsx";
 import { spawnLeafBurst } from "../../../utils/leafBurst.js";
 import ScrollToTop from "../../../components/shared/ScrollToTop.jsx";
-
-
-
 
 // كل صندوق مواصفة: الحقل، الأيقونة، وثيم لون (نفس تدوير mint-pale/wheat-pale
 // المستخدم في كروت التصنيف والمنتج بالموقع كله)
@@ -256,6 +253,9 @@ const ProductDetailsPage = () => {
           </div>
         </div>
       </section>
+
+      {/* أنشطة العمليات داخل المحطة — ثابتة لكل المنتجات */}
+      <StationActivities />
 
       <PublicFooter />
       <ScrollToTop />
