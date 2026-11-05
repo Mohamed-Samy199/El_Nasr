@@ -29,10 +29,10 @@ const CONTACT_ITEMS = [
   },
   {
     icon: Mail,
-    value: "elnasrcompanyagricultural@gmail.com",
+    value: "alnasrgroup1217@gmail.com",
     label_en: "Email",
     label_ar: "البريد الإلكتروني",
-    href: "mailto:elnasrcompanyagricultural@gmail.com",
+    href: "mailto:alnasrgroup1217@gmail.com",
   },
   {
     icon: MapPin,

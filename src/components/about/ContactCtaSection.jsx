@@ -34,11 +34,11 @@ const ContactCtaSection = ({ isAr, isRtl }) => {
 
             {/* Email */}
             <a
-              href="mailto:elnasrcompanyagricultural@gmail.com"
+              href="mailto:alnasrgroup1217@gmail.com"
               className="flex items-center gap-1.5 hover:text-paper transition-colors"
             >
               <Mail size={14} className="text-wheat shrink-0" />
-              <span>elnasrcompanyagricultural@gmail.com</span>
+              <span>alnasrgroup1217@gmail.com</span>
             </a>
 
             {/* Location */}
